@@ -25,18 +25,30 @@ module.exports = {
 
         function getReading(gpio, sensorNumber) {
             var convert = _.pick(_.find(data.pinToGpio, {gpio: gpio}), ['base', 'number']);
+            var retryCount = 0;
 
             if (!_.isUndefined(sensorNumber)) {
-                var current = dht.read(sensorNumber, convert.base, convert.number),
-                    fahrenheit = (current.temperature * 1.8) + 32,
-                    hasErrors = module.exports.checkErrors(current.result);
+                while (retryCount !== 5) {
+                    var current = dht.read(sensorNumber, convert.base, convert.number),
+                        fahrenheit = (current.temperature * 1.8) + 32,
+                        hasErrors = module.exports.checkErrors(current.result);
 
-                if (hasErrors === false) {
-                    return {
-                        celsius: current.temperature,
-                        fahrenheit: fahrenheit,
-                        humidity: current.humidity
-                    };
+                    if (hasErrors === false) {
+                        return {
+                            celsius: current.temperature,
+                            fahrenheit: fahrenheit,
+                            humidity: current.humidity
+                        };
+                    } else {
+                        if ( retryCount === 5 ) {
+                            for ( var x = 0; x < data.sensorErrors.length; x++ ) {
+                                if ( data.sensorErrors[x].value === current.result ) {
+                                    return { error: data.sensorErrors[x].name };
+                                }
+                            }
+                        }
+                    }
+                    retryCount++;
                 }
             } else {
                 throw new Error('Expected DHT11, DHT22, or AM2302 sensor value.');
