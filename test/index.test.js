@@ -46,10 +46,4 @@ describe('read', function() {
             dht.read('P9_1000');
         }).to.throw(Error, /Pin must be a valid GPIO identifier!/);
     });
-
-    it('should expect a sensor model', function() {
-        expect(function() {
-            dht.read('P9_15', 'fake_model');
-        }).to.throw(Error, /Expected DHT11, DHT22, or AM2302 sensor value./);
-    });
 });
