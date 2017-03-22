@@ -1,6 +1,6 @@
 # beaglebone-dht
 
-[![Build Status](https://travis-ci.org/ChadLefort/beaglebone-dht.svg?branch=master)](https://travis-ci.org/ChadLefort/beaglebone-dht)
+[![Build Status](https://travis-ci.org/jgtaylor/beaglebone-dht.svg?branch=master)](https://travis-ci.org/jgtaylor/beaglebone-dht)
 
 Reads DHT series of temperature sensors on a Beaglebone Black.
 
@@ -26,7 +26,7 @@ console.log(read);
 }
 **/
 ```
-
+If a sensor model is not passed as the second argument to #.read(pin, 'xxxx'), the default sensorNumber will be 22.
 ### Run Tests
 
 ```
