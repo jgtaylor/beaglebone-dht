@@ -1,15 +1,15 @@
 var expect = require('chai').expect,
     dht = require('../index');
 
-describe('sensor', function() {
-    it('should return a sensor number value', function() {
-        expect(dht.sensor('DHT22')).to.equal(22);
-    });
+// describe('sensor', function() {
+//     it('should return a sensor number value', function() {
+//         expect(dht.sensor('DHT22')).to.equal(22);
+//     });
 
-    it('should be undefined', function() {
-        expect(dht.sensor('ABC')).to.be.undefined;
-    });
-});
+//     it('should be undefined', function() {
+//         expect(dht.sensor('ABC')).to.be.undefined;
+//     });
+// });
 
 describe('current errors', function() {
     it('should return true for having timeout or checksum errors', function() {
@@ -49,7 +49,7 @@ describe('read', function() {
 
     it('should expect a sensor model', function() {
         expect(function() {
-            dht.read('P9_15');
+            dht.read('P9_15', 'fake_model');
         }).to.throw(Error, /Expected DHT11, DHT22, or AM2302 sensor value./);
     });
 });
