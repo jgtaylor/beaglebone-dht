@@ -12,17 +12,16 @@ npm install beaglebone-dht --save
 
 ### Example
 
-```
-var dht = require('beaglebone-dht'),
-    sensor = dht.sensor('DHT22'),
-    read = dht.read('P9_15');
+```javascript
+var dht = require('beaglebone-dht');
+var read = dht.read('P9_15', 'DHT22');
 
 console.log(read);
 
 /**
 {
-    celsius: 21.899999618530273,
-    fahrenheit: 71.4199993133545,
+    celsius: 21.8,
+    fahrenheit: 71.4,
     humidity: 53
 }
 **/
