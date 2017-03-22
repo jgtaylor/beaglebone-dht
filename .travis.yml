@@ -13,5 +13,7 @@ addons:
     packages:
     - g++-4.8
 
+sudo: required
+
 script:
   - npm test
