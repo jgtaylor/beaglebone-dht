@@ -6,7 +6,8 @@
   "dependencies": {
     "bindings": "^1.2.1",
     "lodash": "^4.17.5",
-    "nan": "^2.1.0"
+    "nan": "^2.1.0",
+    "snyk": "^1.316.1"
   },
   "devDependencies": {
     "chai": "^3.4.1",
@@ -14,7 +15,9 @@
   },
   "scripts": {
     "test": "mocha",
-    "install": "node-gyp rebuild"
+    "install": "node-gyp rebuild",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "repository": {
     "type": "git",
@@ -36,5 +39,6 @@
   "bugs": {
     "url": "https://github.com/ChadLefort/beaglebone-dht/issues"
   },
-  "homepage": "https://github.com/ChadLefort/beaglebone-dht#readme"
+  "homepage": "https://github.com/ChadLefort/beaglebone-dht#readme",
+  "snyk": true
 }
